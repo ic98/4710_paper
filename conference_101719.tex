@@ -86,7 +86,7 @@ Stack Overflow is widely used by software developers all around the world and is
 \end{abstract}
 
 \begin{IEEEkeywords}
-Sentiment Analysis, Stack Overflow, Empirical Software Engineering, Natural Language Processing, Visualization
+Sentiment Analysis, Stack Overflow, Empirical Software Engineering, Natural Language Processing, Visualization, Qualitative Analysis
 \end{IEEEkeywords}
 
 \section{Introduction}
@@ -201,13 +201,13 @@ Java&Compiled&Old\\
 \hline
 Rust&Compiled&New\\
 \hline
-Ruby/Rails&Interpreted&Old\\
+Ruby/Rails&Compiled&Old\\
 \hline
 Python&Interpreted&Old\\
 \hline
 Perl&Interpreted&Old\\
 \hline
-JavaScript&Interpreted&New/Old\\
+JavaScript&Interpreted&Old\\
 \hline
 \end{tabular}
 \label{tab1}
@@ -398,7 +398,7 @@ The question and answer data from stack overflow consists of a lot of extra fluf
     \item Redundant whitespace removal
     \item Filter by columns needed
     \item Split data into given number of chunks
-    \item Transform into multiple csv files
+    \item Transform into multiple csv files\\
 \end{enumerate}
 
 \subsection{Senti4SD and Post-Processing}
@@ -414,7 +414,7 @@ Some of the challenges we faced included:
     \end{itemize}
     \item Senti4SD used to be single-threaded, but the version we used was the multi-threaded one. With different threads writing to the sentiment file, the ordering in the output is unorganized. 
     \begin{itemize}
-        \item This adds another post-processing step to reorganize the sentiment data for a chunk before we can merge the sentiment data for different chunks
+        \item This adds another post-processing step to reorganize the sentiment data for a chunk before we can merge the sentiment data for different chunks\\
     \end{itemize}
 \end{itemize}
 
@@ -430,7 +430,7 @@ We used the following 2 values to chart the data over time. The first one uses a
     y_{pr} = \frac{num_{positive} + 0.5*num_{neutral}}{num_{total}}
 \end{equation}
 
-Both these values are plotted by year separately for questions and answers for the 8 languages we considered. We also plotted compiled and interpreted languages as a whole to see the discrepancies.\\
+Both these values are plotted by year separately for questions and answers for the 8 languages we considered. We also plotted compiled and interpreted languages as a whole to see the discrepancies. On further inspection, we realized that both these values $y_{em}$ and $y_{pr}$ are equivalent, just on different scales. So we will only present the $y_{em}$ values in this paper. \\
 
 For analysis of these sentiments overall, we used the probabilities over the samples. Here, $c$ refers to the discrete class which can be positive, negative, or neutral.
 
@@ -439,7 +439,100 @@ For analysis of these sentiments overall, we used the probabilities over the sam
 \end{equation}
 
 \section{Results/Visualization}
-Results will go here when we have them.
+Like other research in this area (Empirical Software Engineering using Data Science methods), there is a lot of qualitative analysis involved in our paper. So we will phrase them as research questions and try to analyse the different trends we saw. Overall, the data ended up being more neutral than expected, so that precludes us from making definitive conclusions with a few exceptions. \\
+
+Previous research has also shown that the different Sentiment Analysis tools often don't agree a lot with each other, and even humans don't agree with each other a lot. This means that we have to limit ourselves to more coarse-grained analysis rather than fine-grained analysis\cite{b26, b35, b36}. \\
+
+\subsection{RQ1: How do questions compare to answers?}
+Discussion for this goes here
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.49\textwidth]{figures/summNeutralQ.png}}
+\caption{Distribution of sentiments in questions.}
+\label{fig}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.49\textwidth]{figures/summNeutralA.png}}
+\caption{Distribution of sentiments in answers.}
+\label{fig}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.49\textwidth]{figures/summQ.png}}
+\caption{Distribution of positive/negative sentiments in questions.}
+\label{fig}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.49\textwidth]{figures/summA.png}}
+\caption{Distribution of positive/negative sentiments in answers.}
+\label{fig}
+\end{figure}
+
+\subsection{RQ2: Trends over time}
+Discussion for this goes here
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.49\textwidth]{figures/time_answers_em.png}}
+\caption{Answer Sentiments over time.}
+\label{fig}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.49\textwidth]{figures/time_questions_em.png}}
+\caption{Question Sentiments over time.}
+\label{fig}
+\end{figure}
+
+\subsection{RQ3: Interpreted vs Compiled}
+Discussion for this goes here
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.49\textwidth]{figures/time_interpreted_compiled.png}}
+\caption{Interpreted vs Compiled languages over time.}
+\label{fig}
+\end{figure}
+
+\subsection{RQ4: Python vs Java}
+Discussion for this goes here
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.49\textwidth]{figures/Java-python-answers.png}}
+\caption{Python vs Java answers over the 3 time periods}
+\label{fig}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.49\textwidth]{figures/Java-python-questions.png}}
+\caption{Python vs Java questions over the 3 time periods}
+\label{fig}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.49\textwidth]{figures/Java-python-combined.png}}
+\caption{Python vs Java questions/answers over the 3 time periods}
+\label{fig}
+\end{figure}
+
+\subsection{RQ5: Rust is anomalous}
+Talking points go here
+
+\begin{figure*}[tbp]
+\centering
+\includegraphics[width=\textwidth]{figures/time_questions_em.png}
+\caption{Question Sentiments over time}
+\label{fig}
+\end{figure*}
+
+\begin{figure*}[tbp]
+\centering
+\includegraphics[width=\textwidth]{figures/time_answers_em.png}
+\caption{Answer Sentiments Over Time}
+\label{fig}
+\end{figure*}
+
+
 
 \section{Threats to validity}
 Stuff that might have introduced errors or how different approach might lead to different conclusions
