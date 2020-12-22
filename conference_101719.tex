@@ -82,41 +82,43 @@ placidej@myumanitoba.ca}
 \maketitle
 
 \begin{abstract}
-Stack Overflow is widely used by software developers all around the world and is one of the most commonly used platforms to get help with programming-related issues. But since it uses a Question-Answer model, the quality of discussion can often depend on the sentiment conveyed through questions, answers, and comments. Trends in technology keep shifting and popular technologies can easily become forgotten and obsolete. As such, developers' feelings towards different programming languages and tools continue to change as new programming languages and tools emerge. In this project, we applied sentimental analysis techniques to Stack Overflow data to find interesting patterns about developers' feelings towards some languages over time. The nature of Software Engineering texts causes normal Sentimental Analysis tools to have questionable results. So we used Senti4SD, which is a classifier trained on Software Engineering data.
+Stack Overflow is widely used by software developers all around the world and is one of the most commonly used platforms to get help with programming-related issues. But since it uses a Question-Answer model, the quality of discussion can often depend on the sentiment conveyed through questions, answers, and comments. Trends in technology keep shifting and popular technologies can easily become obsolete. As such, developers' feelings towards different programming languages and tools continue to change as new ones emerge. In this project, we applied sentimental analysis techniques to Stack Overflow data to find interesting patterns about developers' feelings towards some languages over time. The nature of Software Engineering discussion causes normal Sentimental Analysis tools to have questionable results. So we used Senti4SD, which is a classifier trained on Stack Overflow data.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Sentiment Analysis, Stack Overflow, Empirical Software Engineering, Natural Language Processing, Visualization, Qualitative Analysis
+Sentiment Analysis, Stack Overflow, Empirical Software Engineering, Natural Language Processing, Visualization, Qualitative Analysis, Application
 \end{IEEEkeywords}
 
 \section{Introduction}
-As technology becomes more ubiquitous with everyday life, developers and engineers have continued to innovate and develop new technological tools and programming languages (these terms are used interchangeably from here on out) to solve newer problems or to bring a new perspective into the process of developing new software. With newer tools emerging, developers' feelings towards existing and novel tools changes over time. Our aim is to find interesting patterns related to that change in developer feelings. \\
+As technology becomes more ubiquitous with everyday life, developers and engineers have continued to innovate and develop new technological tools and programming languages (these terms are used interchangeably from here on out) to solve more complex problems or to bring a new perspective into the process of developing new software. With newer tools emerging, developers' feelings towards existing, once novel, tools changes over time. Our aim is to find interesting patterns related to that change in developer feelings. \\
 
-Stack Overflow is used by most developers, for work and/or for personal projects. Questions and answers are posted by newcomers and experienced professionals, and everyone in between. Its ubiquity, active community, and open source data makes for a representative data source with enough entries to allow meaningful analysis about developer feelings about different tools over time. So, we used data from Stack Overflow as the base for our research. Stack Overflow data also contains dates and tags. This makes collection of language-specific posts easy and also helps with temporal analysis that we aim to do.
+Stack Overflow is used by most developers, for work and/or for personal projects. Questions and answers are posted by newcomers and experienced professionals, and everyone in between. This robust community of free sharing knowledge and experience is very unique to the Computer Science field, and pioneered other knowledge sharing platforms. Stack Overflow's ubiquity, active community, and open source data availability makes for a representative data source with enough entries to allow meaningful analysis about developer feelings about different tools over time. So, we used questions and answers from Stack Overflow as the base for our research. Stack Overflow data also contains dates and tags. This makes collection of language-specific posts easy and also helps with temporal analysis which we aim to do.
 
 \subsection{Motivation}
 Emotional awareness plays a critical role in collaborative work. Software development is highly collaborative and depends on a lot of collaborations tools like email, forums, code repositories, and issue tracking tools\cite{b1}. Previous research shows that emotion in the workplace affects collaboration and productivity of employees\cite{b2}. \\
 
-Discussions on StackOverflow aren't neutral. Previous research suggests that a sizable amount of texts are positive or negative\cite{b3, b4, b5}. There is also evidence that Stack Overflow can be perceived as a hostile environment, particularly for newcomers\cite{b6}. We wanted to go through data over the years and to find how developers' emotions towards different languages has changed over the years to answer the following questions:
+Discussions on StackOverflow aren't neutral. Previous research suggests that a sizable amount of texts are positive or negative\cite{b3, b4, b5}. There is also evidence that Stack Overflow can be perceived as a hostile environment, particularly for newcomers\cite{b6}. We went through data over the years and to find how developers' emotions towards different languages has changed over the years to answer the following questions:
  \subsubsection{Trends}Are there any interesting trends about developers' changing emotions towards languages?
  \subsubsection{Comparisons}How do newer languages compare to the established ones and obsolete ones?
  \subsubsection{Compiled vs Interpreted}How do emotions towards compiled languages differ from emotions towards interpreted languages over time?
- \subsubsection{Type}How do questions compare to answers?\\
+ \subsubsection{Lower-level vs Higher-level} How do emotions towards lower-level languages differ from higher-level languages over time?
+ \subsubsection{Type}How do questions compare to answers?
+ 
 
-So we aim to use NLP techniques and the data we have gathered to answer these questions.
+So we aim to use Natural Language Processing (NLP) techniques and the data we have gathered to answer these questions.
 
 \subsection{Our Contribution}
-We researched NLP tools and techniques that would help use with this problem. We collected data for multiple languages from Stack Overflow and applied Sentimental analysis techniques along with temporal analysis to answer interesting questions about developers' emotions towards different languages over time and how these might be connected to other attributes of the language like age, maturity, and runtime nature.\\
+We researched NLP tools and techniques that would help us with this problem. We collected data for multiple languages from Stack Overflow and applied Sentimental analysis techniques along with temporal analysis to pose interesting questions about developers' emotions towards different languages over time and how these might be connected to other attributes of the language like age, complexity and run-time nature.\\
 
 \section{Background}
 
 \subsection{Natural Language Processing}
-Natural Language Processing is the extraction of meaning from human language using a computer\cite{b7, b8}. Some of the applications of NLP include translation, text retrieval, dialogue systems, information summarization, and categorization\cite{b7}. While NLP began as an intersection of AI and Linguistics in the 1950s, it has evolved to use statistical methods and borrows from many diverse fields including Machine Learning, Data Science, and AI \cite{b8}. \\
+Natural Language Processing is the extraction of meaning from human language using a computer\cite{b7, b8}. Some of the applications of NLP include translation, text retrieval, dialogue systems, information summarization, and categorization\cite{b7}. While NLP began as an intersection of Artificial Intelligence (AI) and Linguistics in the 1950s, it has evolved to use statistical methods and borrows from many diverse fields including Machine Learning, Data Science, and AI \cite{b8}. \\
 
 While earlier methods used  rules and determinism, newer techniques use probabilities and statistics in the form of machine learning \cite{b8}. NLP is a challenging problem due to the complex nature of human language and this means that rule-based systems were limited in what they could achieve. Our focus is on the Sentiment Analysis, which is a subfield of NLP. \\
 
 \subsection{Sentiment Analysis}
-Sentiment Analysis deals with the computational treatment of opinion, sentiment, and subjectivity in text. Sentiment Analysis techniques aim to identify polarity in a sentence or document. More formally, it is the discovery of sentiment expressed by an opinion holder towards some entities such as products, services, people, companies, issues, or events. Document-level sentiment analysis treats the whole document as an entity, while sentence-level classification assigns a sentiment to each sentence. There are many applications of Sentiment Analysis like product review understanding, recommendations, QnA sites, social media, company reputation and opinion, politics, and marketing. \cite{b10, b13, b19}\\
+Sentiment Analysis deals with the computational treatment of opinion, sentiment, and subjectivity in text. Sentiment Analysis techniques aim to identify polarity in a sentence or document. More formally, it is the discovery of sentiment expressed by an opinion holder towards some entities such as products, services, people, companies, issues, or events. Sentence-level classification assigns a sentiment to each sentence, while document-level sentiment analysis treats the whole document as an entity. There are many applications of Sentiment Analysis like product review understanding, recommendations, Q\&A sites, social media, company reputation and opinion, politics, and marketing. \cite{b10, b13, b19}\\
 
 Some of the common methods of Sentiment Analysis include machine learning methods and lexical-based approaches. Lexical-based methods use predefined lists of words and n-grams in which each word is associated with different sentiments. As a result, the methods vary based on the context they are applied to and aren't directly usable in a different context. Some examples of lexical based methods include Linguistic Inquiry and Word Count (LWIC), SO-CAL, and VADER.\cite{b11, b13}\\
 
@@ -124,7 +126,7 @@ Machine learning approaches to Sentiment Analysis can be divided into supervised
 
 Some of the newer sentiment analyzers combine the lexical-based methods and machine learning methods. Examples include SentiWordNet\cite{b15}, SentiStrength\cite{b16}, and Standford recursive deep model\cite{b17}.\\
 
-An in-depth study on 24 published sentiment analyzers found that different analysers have different performance depending on the dataset used. It also shows that these analyzers may not agree with each other. This means very different results based on the analyzer used. This means that it is important to choose to right analyzer for the domain and application. This is also the biggest threat to validity for our study.\\
+An in-depth study on 24 published sentiment analyzers found that different analysers have different performance depending on the dataset used.\cite{b13} It also shows that these analyzers may not agree with each other. This means very different results based on the analyzer used, which in turn means that it is important to choose to right analyzer for the domain and application. This is also the biggest threat to validity for our study.\\
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=0.49\textwidth]{how-does-sentiment-analysis-work.png}}
@@ -137,7 +139,7 @@ Prior work on sentimental analysis in development environment have been largely 
 
 
 \subsection{Evaluation of Sentiment Analysis Tools}
-Many of the empirical Software Engineering studies rely on off the shelf analyzers that are not trained on Software Engineering domain-specific texts. The research community questions the validity of these results\cite{b21}. To overcome this limitations, a few analyzers have been created for the Software Engineering domain.\\ 
+Many of the empirical Software Engineering studies rely on off-the-shelf analyzers that are not trained on Software Engineering domain-specific texts. The research community doubts the validity of these results\cite{b21}. To overcome this limitations, a few analyzers have been created for the Software Engineering domain.\\ 
 
 The publicly available Sentiment Analysis tools that we considered were SentiStrength, Senti4SD, SentiStrengthSE, and SentiCR\cite{b16, b18, b19, b20}. We picked these over some of the newer models like BERT\cite{b22} due to the shorter nature of the project and the fact that these have been available publicly and have been tested extensively in the Software Engineering (SE) domain. Ultimately, we went with Senti4SD due to it's accuracy on Stack Overflow Data, public availability and the thorough research done on it (maturity).\\
 
@@ -161,14 +163,14 @@ Some of the difficulties that they faced and addressed are also faced by other r
 \end{itemize}
 
 \subsubsection{SentiCR}
-SentiCR is a supervised learning sentiment analyzer, trained specifically for Code review comments using data from Gerritt. It uses a feature vector generated by computing the Term Frequency - Inverse Document Frequency (TF-IDF) for words extracted from input text. As with SentiStrengthSE, it also has a preprocessing step to deal with some of the challenges mentioned and to normalize text. It performs synthetic minority over-sampling technique (SMOTE) to address class imbalance in training data by improving the ratio of negative to non-negative comments in the training sequence. The authors found that the Gradient Boosting Tree performs the best out of the Supervised learning approaches they used\cite{19} (like Adaptive Boosting, Naive Bayes, SVM with Schotastic Gradient Descent, etc.).\\
+SentiCR is a supervised learning sentiment analyzer, trained specifically for Code-review comments using data from Gerritt. It uses a feature vector generated by computing the Term Frequency - Inverse Document Frequency (TF-IDF) for words extracted from input text. As with SentiStrengthSE, it also has a preprocessing step to deal with some of the challenges mentioned and to normalize text. It performs synthetic minority over-sampling technique (SMOTE) to address class imbalance in training data by improving the ratio of negative to non-negative comments in the training sequence. The authors found that the Gradient Boosting Tree performs the best out of the Supervised learning approaches they used\cite{b19} (like Adaptive Boosting, Naive Bayes, SVM with Schotastic Gradient Descent, etc.).\\
 
 \subsubsection{Senti4SD}
-Senti4SD is a sentiment analyzer created in 2017 for software development related texts. The authors came up with a manually annotated gold standard dataset built based on more than 4000 Stack Overflow questions, answers, and comments. This complements the gold standard dataset that the SentiStrengthSE authors used. It considers various features including 19 Lexicon-based features, 76,346 Keyword-based features, and 4 Semantic features\cite{b18}. For the Semantic features, Senti4SD contains a Distributed Semantic Model (DSM) trained with 20 million preprocessed documents from Stack Overflow. In a DSM, linguistic items (like words, sentences, and documents) are represented as vectors is a high dimensional space. Senti4SD is trained with SVMs because SVMs are able to learn and generalize even in high dimensional feature space like the one Senti4SD has.\\
+Senti4SD is a sentiment analyzer created in 2017 for software development related texts. The authors came up with a manually annotated gold standard dataset built based on more than 4000 Stack Overflow questions, answers, and comments. This complements the gold standard dataset that the SentiStrengthSE authors used. It considers various features including 19 Lexicon-based features, 76,346 Keyword-based features, and four Semantic features\cite{b18}. For the Semantic features, Senti4SD contains a Distributed Semantic Model (DSM) trained with 20 million preprocessed documents from Stack Overflow. In a DSM, linguistic items (like words, sentences, and documents) are represented as vectors is a high dimensional space. Senti4SD is trained with Support Vector Machines (SVMs) because they are able to learn and generalize even in high dimensional feature space like the one Senti4SD has.\\
 
 Compared to SentiStrength, Senti4SD reduces misclassifications of neutral and positive posts as negative \cite{b21}. Overall, Senti4SD outperforms or is close in performance to SentiStrength, SentiCR, and SentiStrengthSE for different SE-specific data\cite{b21, b26}. But Senti4SD is better than SentiStrength, SentiCR, and SentiStrengthSE for Stack Overflow data. This is the primary reason we picked Senti4SD for our purposes. It is noted that different sentiment analyzers might give different results, but the conclusions can be consistent at a coarse level of granularity \cite{b26}.\\
 
-\subsubsection{BERT*}
+\subsubsection{BERT}
 Bidirectional Encoder Representations from Transformers (BERT) is a relatively new model that performs really well at sentiment analysis on general texts\cite{b27}. While it has the potential to be much better than existing techniques for SE-specific texts, it is not at that stage yet. BERT has been applied to SE-specific data with some success\cite{b22}, but empirical research shows that it doesn't outperform Senti4SD by a meaningful amount \cite{b26}. This would make for an interesting comparison in the future, but under the time constraints, we went with Senti4SD for our task due to its maturity and good performance on Stack Overflow data. \\
 
 \begin{figure*}[tbp]
@@ -179,12 +181,12 @@ Bidirectional Encoder Representations from Transformers (BERT) is a relatively n
 \end{figure*}
 
 \subsection{Emotions in Software Engineering and Stack Overflow}
-While there has been plenty of research into performing Sentiment Analysis on SE-related data, there is not much research into the results obtained from these Sentiment Analysis techniques. Novielli et al\cite{b33} used information from stack overflow data to argue that the emotional style of a technical question affects the probability of said question getting an appropriate answer.  Ling and Larsen\cite{b11} have also applied the Senti4SD model to Stack Overflow Data for some popular languages, however, in that paper, they used only data from 2017 and did not consider any changes in the sentiments over a more extensive time period. From our research, most of the work done using stack overflow data has been more qualitative that quantitative. For example, Novielle et al \cite{b34} presented a qualitative overview of the different types of positive and negative emotions in questions and answers. But to the best of our knowledge no one has used Sentiment Analysis on Stack Overflow data to find interesting changes and trends over time. Software development is always in a state of flux, so we believe there are some interesting patterns than can be uncovered by our type of analysis.\\
+While there has been plenty of research into performing Sentiment Analysis on SE-related data, there is not much research into the results obtained from these Sentiment Analysis techniques. Novielli et al\cite{b33} used information from Stack Overflow data to argue that the emotional style of a technical question affects the probability of said question getting an appropriate answer.  Ling and Larsen\cite{b11} have also applied the Senti4SD model to Stack Overflow Data for some popular languages, however, in that paper, they used only data from 2017 and did not consider any changes in the sentiments over a more extensive time period. From our research, most of the work done using stack overflow data has been more qualitative that quantitative. For example, Novielle et al \cite{b34} presented a qualitative overview of the different types of positive and negative emotions in questions and answers. But to the best of our knowledge no one has used Sentiment Analysis on Stack Overflow data to find interesting changes and trends over time. Software development is always in a state of flux, so we believe there are some interesting patterns than can be uncovered by our type of analysis.\\
 
 \section{Our Method}
  
 \subsection{Overview}
-We wanted to get a good subset of programming languages for our analysis, but not so many that it would become very time consuming. We planned to use the StackExchange data dump for Stack Overflow, but it proved to be a bit too expensive computationally and for storage. So, our current approach involved randomly sampling data from Stack Overflow for different languages using the Stack Exchange API. While the API had a cap of 50,000 entries per query, this was sufficient for our purposes. We cleaned and preprocessed the data into a format that the Senti4SD classifier requires and then ran the classifier for different programming languages and different time periods. A summary is provided in Figure 2.\\
+We wanted to get a good subset of programming languages for our analysis, but not so many that it would become too time consuming. We planned to use the Stack Exchange data dump for Stack Overflow, but it proved to be a bit too expensive computationally and for storage. So, our current approach involved randomly sampling data from Stack Overflow for different languages using the Stack Exchange Data Explorer\cite{b28}. This data explorer has a cap of 50,000 entries per query, this was sufficient for our purposes. We cleaned and preprocessed the data into a format that the Senti4SD classifier requires and then ran the classifier for different programming languages and different time periods. A summary is provided in Figure 2.\\
 
 \begin{table}[htbp]
 \caption{Programming Languages selected}
@@ -276,7 +278,7 @@ Perl&29.4\%\\
 \subsubsection{Collection}
 We collected data using the Stack Exchange API \cite{b28} using carefully constructed SQL queries to randomize the order of the data for specific languages, and then picking every N\textsuperscript{th} entry from the randomized data. The challenges we faced were the 50,000 result limitation for queries and the processing time limit for these queries.\\
 
-One unintended effect of our data collection method is that the data is representative of the distribution overall. So we ended up with more entries from recent years and fewer entries from older years because there is much more activity on Stack Overflow now compared to even 5-10 years ago. This is something to consider because our analysis become more reliable as date range increases (because of more newer data). Additionally, some languages have fewer posts (because they are new like Rust) so we were able to collect all their data with our query.\\
+One unintended effect of our data collection method is that the data is representative of the temporal distribution overall. This means we ended up with more entries from recent years and fewer entries from older years because there is much more activity on Stack Overflow now compared to even five to ten years ago. This is something to consider because our analysis becomes more reliable as date range increases (because the amount of questions and answers increases with recency). Additionally, some languages have fewer posts (because they are new like Rust) so we were able to collect all their data with our query.\\
 
 \subsubsection{Queries used}
 We used Queries for answers, questions, and count. Since some of the languages have a lot of questions and answers, we needed to count an pick every N\textsuperscript{th} entry from the randomized list. The N-value is calculated as follows:
@@ -420,7 +422,7 @@ Some of the challenges we faced included:
 
 \subsection{Analysis}
 \subsubsection{Visualization}
-We used the following 2 values to chart the data over time. The first one uses a scale of (-1, 1) to highlight how positive/negative leaning the questions or answers are. Meanwhile the second one uses a scale of (0, 1) which represents an overall score for for the questions/answers which are indicative of the sentiments an actual user browsing might encounter, where a value of 0.5 indicates a lack of positive or negative emotion.
+We used the following two values to chart the data over time. The first one uses a scale of (-1, 1) to highlight how positive/negative leaning the questions or answers are. Meanwhile the second one uses a scale of (0, 1) which represents an overall score for for the questions/answers which are indicative of the sentiments an actual user browsing might encounter, where a value of 0.5 indicates a lack of positive or negative emotion.
 
 \begin{equation}
     y_{em} = \frac{num_{positive} - num_{negative}}{num_{total}}
@@ -430,7 +432,7 @@ We used the following 2 values to chart the data over time. The first one uses a
     y_{pr} = \frac{num_{positive} + 0.5*num_{neutral}}{num_{total}}
 \end{equation}
 
-Both these values are plotted by year separately for questions and answers for the 8 languages we considered. We also plotted compiled and interpreted languages as a whole to see the discrepancies. On further inspection, we realized that both these values $y_{em}$ and $y_{pr}$ are equivalent, just on different scales. So we will only present the $y_{em}$ values in this paper. \\
+Both these values are plotted by year separately for questions and answers for the eight languages we considered. We also plotted compiled and interpreted languages as a whole to see the discrepancies. On further inspection, we realized that both these values $y_{em}$ and $y_{pr}$ are equivalent, just on different scales. So we will only present the $y_{em}$ values in this paper. \\
 
 For analysis of these sentiments overall, we used the probabilities over the samples. Here, $c$ refers to the discrete class which can be positive, negative, or neutral.
 
@@ -438,29 +440,17 @@ For analysis of these sentiments overall, we used the probabilities over the sam
     \hat{p}(c) = \frac{num_c}{num_{total}}
 \end{equation}
 
+\vspace{6pt}
 \section{Results/Visualization}
 Like other research in this area (Empirical Software Engineering using Data Science methods), there is a lot of qualitative analysis involved in our paper. So we will phrase them as research questions and try to analyse the different trends we saw. Overall, the data ended up being more neutral than expected, so that precludes us from making definitive conclusions with a few exceptions. \\
 
-Previous research has also shown that the different Sentiment Analysis tools often don't agree a lot with each other, and even humans don't agree with each other a lot. This means that we have to limit ourselves to more coarse-grained analysis rather than fine-grained analysis\cite{b26, b35, b36}. \\
+Previous research has also shown that the different Sentiment Analysis tools often don't agree a lot with each other, and even humans do not agree with each other a lot. This means that we have to limit ourselves to more coarse-grained analysis rather than fine-grained analysis\cite{b26, b35, b36}. \\
 
 \subsection{RQ1: How do questions compare to answers?}
-Discussion for this goes here
-
-\begin{figure}[htbp]
-\centerline{\includegraphics[width=0.49\textwidth]{figures/summNeutralQ.png}}
-\caption{Distribution of sentiments in questions.}
-\label{fig}
-\end{figure}
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=0.49\textwidth]{figures/summNeutralA.png}}
 \caption{Distribution of sentiments in answers.}
-\label{fig}
-\end{figure}
-
-\begin{figure}[htbp]
-\centerline{\includegraphics[width=0.49\textwidth]{figures/summQ.png}}
-\caption{Distribution of positive/negative sentiments in questions.}
 \label{fig}
 \end{figure}
 
@@ -470,14 +460,32 @@ Discussion for this goes here
 \label{fig}
 \end{figure}
 
-\subsection{RQ2: Trends over time}
-Discussion for this goes here
+The distribution for answers in Fig. 3 shows that an overwhelming majority (80\% - 90\%) of them have neutral sentiment. From Fig. 4, we can see that of all the answers that do show some sentiment, there are many more answers with positive sentiments compared to answers with negative sentiments.\\
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=0.49\textwidth]{figures/time_answers_em.png}}
-\caption{Answer Sentiments over time.}
+\centerline{\includegraphics[width=0.49\textwidth]{figures/summNeutralQ.png}}
+\caption{Distribution of sentiments in questions.}
 \label{fig}
 \end{figure}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.49\textwidth]{figures/summQ.png}}
+\caption{Distribution of positive/negative sentiments in questions.}
+\label{fig}
+\end{figure}
+
+The majority of questions (55\% - 62\%) also have neutral sentiments, but the percentage is significantly lower than that for answers. This can be seen in Fig. 5. From Fig. 6, we can see that out of all the questions that show sentiment, there are more questions with negative sentiments than questions with positive sentiments. \\
+
+Overall, answers seem to have a much more neutral tone with very few answers with negative sentiments. On the other hand, questions seem to have a bit less neutral tone, and quite a bit more negative sentiments. These conclusions also seem to be in line with the research done by Lin and Larsen on Data from 2017 only \cite{b11}.\\
+
+Out of all the languages examined, C++ had the highest negative sentiment in questions with 30.36\% of questions expressing negative sentiments. It is followed closely by Rust with 29.90\% and C with 28.88\%. It is worth noting that these are similar languages. C++ is a superset of C, and Rust is syntactically similar to C++ as well\cite{b37}. As for relative positive sentiment, JavaScript showed the most positive sentiment at in its questions with 16.68\% positivity.\\
+
+For answers, Rust showed the most negative sentiment with 5.72\% followed by C++ at 4.36\%. Ruby has the most relative positive sentiment in it's answers, with 11.42\% positivity.\\
+
+An interesting observation is that JavaScript questions had the lowest discrepancy between its percentage of positive and negative questions (24.09\% negative and 16.68\% positive) and the highest discrepancy between positive and negative answers (10.64\% positive and 2.65\% negative) with positivity trending higher. So JavaScript does seem to be the most positive overall for the whole time period cumulative.
+
+\subsection{RQ2: Trends over time}
+Fig. 7 and Fig. 8 show the sentiment score for each language plotted over time for answers and questions respectively, where 0 represents entirely neutral sentimental data, -1 would represent entirely negative sentimental data, and +1 would represent entirely positive sentimental data. It is worth noting that Rust is a newer language than the rest, and thus its data starts in 2012 and drops sharply in Fig. 8 as more posts are made. \\
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=0.49\textwidth]{figures/time_questions_em.png}}
@@ -485,8 +493,19 @@ Discussion for this goes here
 \label{fig}
 \end{figure}
 
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=0.49\textwidth]{figures/time_answers_em.png}}
+\caption{Answer Sentiments over time.}
+\label{fig}
+\end{figure}
+
+As seen in fig. 7, the sentiment of questions over time varies more wildly across different languages (varying from about -0.25 to 0.075), compared to the sentiment of answers as seen in fig. 8 (varying from about 0 to 0.13). An interesting trend that we noticed is that the questions seem to get more negative over time. While this could be attributed to merely having less data from those years, that doesn't seem to be the case.\\
+
+We verified this by applying sentiment analysis to more older data, in specific for Python and Java (refer to RQ5 below). The findings seem to support the trend that questions have gotten more negative over time, especially when compared to a decade ago. We cannot make any such observations about the answers though, partly because they display less positive or negative sentiment, and also because the have been within a limited range over time.\\
+
+
 \subsection{RQ3: Interpreted vs Compiled}
-Discussion for this goes here
+Overall $y_{em}$ scores for all the interpreted (Python, JavaScript, Perl) and all the compiled languages (C, C++, Java, Ruby, Rust) in our tests are charted in Fig. 9. While these are limited by the languages we considered, the trend is fairly strong. \\
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=0.49\textwidth]{figures/time_interpreted_compiled.png}}
@@ -494,7 +513,14 @@ Discussion for this goes here
 \label{fig}
 \end{figure}
 
-\subsection{RQ4: Python vs Java}
+Here, it is more clearly indicated that compiled languages have a stronger negative trend in overall posts across time, whereas the sentiment of interpreted languages is more stable over time. Fig. 9 further demonstrates how compiled languages are more negatively sentimental (and less positively sentimental) than interpreted languages throughout time for all posts, with the gap growing larger across time after 2009. \\
+
+From Fig. 7 and 8 above, we can see that the popular interpreted languages have consistently more positive sentiment in their discussion compared to the popular compiled ones. But on a closer inspection of the languages we considered, there may be an underlying reason that has a stronger effect on these values (see RQ4). \\
+
+\subsection{RQ4: Lower-level vs Higher-level languages}
+something here
+
+\subsection{RQ5: Python vs Java}
 Discussion for this goes here
 
 \begin{figure}[htbp]
@@ -515,22 +541,8 @@ Discussion for this goes here
 \label{fig}
 \end{figure}
 
-\subsection{RQ5: Rust is anomalous}
+\subsection{Rust is anomalous}
 Talking points go here
-
-\begin{figure*}[tbp]
-\centering
-\includegraphics[width=\textwidth]{figures/time_questions_em.png}
-\caption{Question Sentiments over time}
-\label{fig}
-\end{figure*}
-
-\begin{figure*}[tbp]
-\centering
-\includegraphics[width=\textwidth]{figures/time_answers_em.png}
-\caption{Answer Sentiments Over Time}
-\label{fig}
-\end{figure*}
 
 
 
@@ -613,30 +625,32 @@ Summary of results and contributions, and ideas for improvements and future work
 
 \bibitem{b36} N. Imtiaz, J. Middleton, P. Girouard, and E. Murphy-Hill, “Sentiment and politeness analysis tools on developer discussions are unreliable, but so are people,” Proceedings of the 3rd International Workshop on Emotion Awareness in Software Engineering, 2018. 
 
+\bibitem{b37} I. Balbaert, Rust essentials: discover how to use Rust to write fast, secure, and concurrent systems and applications, 2nd ed. Packt Publishing, 2018. 
+
 \end{thebibliography}
+
 \vspace{12pt}
 \color{red}
 NOTE: Sections 3 onwards are still Work in Progress.
+\color{black}
 
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/time_questions_em.png}
+\caption{Question Sentiments over time}
+\label{fig}
+\end{figure*}
 
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/time_answers_em.png}
+\caption{Answer Sentiments Over Time}
+\label{fig}
+\end{figure*}
 
-
-
-
-
-
-
- 
-
- 
- 
-
-
- 
-
-
-
-
+\appendices
+\section{First Appendix}
+Here are bigger versions of the figures above
 
 
 
