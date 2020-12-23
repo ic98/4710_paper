@@ -82,7 +82,7 @@ placidej@myumanitoba.ca}
 \maketitle
 
 \begin{abstract}
-Stack Overflow is widely used by software developers all around the world and is one of the most commonly used platforms[e](websites) to get help with programming-related issues. But since it uses a Question-Answer model, the quality of discussion can often depend on the sentiment conveyed through questions, answers, and comments. Trends in technology keep shifting and popular technologies can easily become obsolete. As such, developers' feelings towards different programming languages and tools continue to change as new ones emerge. In this project, we applied sentimental analysis techniques to Stack Overflow data to find interesting patterns about developers' feelings towards some languages over time. The nature of Software Engineering discussion causes normal Sentimental Analysis tools to have questionable results. So we used Senti4SD, which is a classifier trained on Stack Overflow data.
+Stack Overflow is widely used by software developers all around the world and is one of the most commonly used discussion platforms to get help with programming-related issues. But since it uses a Question-Answer model, the quality of discussion can often depend on the sentiment conveyed through questions, answers, and comments. Trends in technology keep shifting and popular technologies can easily become obsolete. As such, developers' feelings towards different programming languages and tools continue to change as new ones emerge. In this project, we applied sentimental analysis techniques to Stack Overflow data to find interesting patterns about developers' feelings towards some languages over time. The nature of Software Engineering discussion causes normal Sentimental Analysis tools to have questionable results. We used Senti4SD, which is a classifier trained on Stack Overflow data. We found that a majority of the posts on Stack Overflow have neutral sentiment, however questions carried more non-neutral sentiment than answers. The sentiment of questions was definitively more negative than positive while answers were more positive than negative.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -92,22 +92,22 @@ Sentiment Analysis, Stack Overflow, Empirical Software Engineering, Natural Lang
 \section{Introduction}
 As technology becomes more ubiquitous in everyday life, developers and engineers have continued to innovate and develop new technological tools and programming languages (these terms are used interchangeably from here on out) to solve more complex problems or to bring a new perspective into the process of developing new software. With newer tools emerging, developers' feelings towards existing, once novel, tools changes over time. Our aim is to find interesting patterns related to that change in developer feelings. \\
 
-Stack Overflow is used by most developers, for work and/or for personal projects. Questions and answers are posted by newcomers and experienced professionals, and everyone in between. This robust community freely sharing knowledge and experience is very unique to the Computer Science field, and pioneered other knowledge sharing platforms. Stack Overflow's ubiquity, active community, and open source data availability makes for a representative data source with enough entries to allow meaningful analysis about developer feelings about different tools over time. So, we used questions and answers from Stack Overflow as the base for our research. Stack Overflow data also contains dates and tags. This makes collection of language-specific posts easy and also helps with temporal analysis which we aim to do.
+Stack Overflow is used by most developers, for work and/or for personal projects. Questions and answers are posted by newcomers and experienced professionals, and everyone in between. This robust community freely sharing knowledge and experience is unique to the Computer Science field, and has pioneered other knowledge sharing platforms. Stack Overflow's ubiquity, active community, and open source data availability makes for a representative data source with enough entries to allow meaningful analysis about developer feelings about different tools over time. We used questions and answers from Stack Overflow as the base for our research. Stack Overflow data also contains dates and tags, which makes collection and analysis easier.
 
 \subsection{Motivation}
 Emotional awareness plays a critical role in collaborative work. Software development is highly collaborative and depends on a lot of collaborations tools like email, forums, code repositories, and issue tracking tools\cite{b1}. Previous research shows that emotion in the workplace affects collaboration and productivity of employees\cite{b2}. \\
 
-Discussions on StackOverflow are not neutral. Previous research suggests that a sizable amount of texts are positive or negative\cite{b3, b4, b5}. There is also evidence that Stack Overflow can be perceived as a hostile environment, particularly for newcomers\cite{b6}. We went through data over the years and to find how developers' emotions towards different languages has changed over the years to answer the following questions:\\
- \subsubsection{Type}How do questions compare to answers [e](emotionally/with regard to sentiment)?
+Discussions on Stack Overflow are not entirely neutral. Previous research suggests that a sizable amount of texts are positive or negative\cite{b3, b4, b5}. There is also evidence that Stack Overflow can be perceived as a hostile environment, particularly for newcomers\cite{b6}. We went through data over the years to find how developers' emotions towards different languages has changed over the years to answer the following questions:\\
+ \subsubsection{Type}How do questions compare to answers emotionally?
  \subsubsection{Trends}Are there any interesting trends about developers' changing emotions towards languages?
  \subsubsection{Compiled vs Interpreted}How do emotions towards compiled languages differ from emotions towards interpreted languages over time?
  \subsubsection{Lower-level vs Higher-level} How do emotions towards lower-level languages differ from higher-level languages over time?\\
  
 
-So we aim to use Natural Language Processing (NLP) techniques and the data we have gathered to answer these questions.
+Here, we aim to use previously developed Natural Language Processing (NLP) techniques and the data we have gathered to answer these questions.
 
 \subsection{Our Contribution}
-We researched NLP tools and techniques that would help us with this problem. We collected data for multiple languages from Stack Overflow and applied [e]Sentimental analysis techniques along with temporal and empirical analysis to ponder interesting questions about developers' emotions towards different languages over time and how these might be connected to other attributes of the language like age, complexity and run-time nature.\\
+We researched NLP tools and techniques that would help us with this problem. We collected data for multiple languages from Stack Overflow and applied Sentiment Analysis techniques along with temporal and empirical analysis to ponder interesting questions about developers' emotions towards different languages over time and how these might be connected to other attributes of the language like age, complexity and run-time nature.\\
 
 \section{Background}
 
@@ -189,7 +189,7 @@ From our research, most of the work done using Stack Overflow data has been more
 \section{Our Method}
  
 \subsection{Overview}
-We wanted to get a good subset of programming languages for our analysis, but not so many that it would become too time consuming. We planned to use the Stack Exchange data dump for Stack Overflow, but it proved to be a bit too expensive computationally and for storage. So, our current approach involved randomly sampling data from Stack Overflow for different languages using the Stack Exchange Data Explorer\cite{b28}. This data explorer has a cap of 50,000 entries per query, this was sufficient for our purposes. We cleaned and preprocessed the data into a format that the Senti4SD classifier requires and then ran the classifier for different programming languages and different time periods. A summary is provided in Figure 2.\\
+We wanted to obtain a good subset of programming languages for our analysis, but not so many that it would become too time consuming. We planned to use the Stack Exchange data dump for Stack Overflow, but it proved to be a bit too expensive computationally and for storage. Ultimately, our approach involved randomly sampling data from Stack Overflow for different languages using the Stack Exchange Data Explorer\cite{b28}. This data explorer has a cap of 50,000 entries per query, which was sufficient for our purposes. We cleaned and preprocessed the data into a format that the Senti4SD classifier requires and then ran the classifier for different programming languages and different time periods. A summary is provided in Figure 2.\\
 
 \begin{table}[htbp]
 \caption{Programming Languages selected}
@@ -219,7 +219,7 @@ JavaScript&Interpreted&Old\\
 \end{center}
 \end{table}
 
-Information about the languages we picked is in Table I. As seen in the Stack Overflow 2020 survey\cite{b29}, these are among the most popular languages and people have very positive attitudes towards some of these languages. This information is summarized in Table II and III. In Table III, the languages with less than 50\% in their row are the ones that are theoretically not liked by users. Perl, at 29.4\% ranks even below Assembly in the Stack Overflow survey's likability section.\\
+Information about the languages we picked is in Table I. As seen in the Stack Overflow 2020 survey\cite{b29}, these are among the most popular languages and people have very positive attitudes towards some of these languages. This information is summarized in Table II and III. In Table III, the languages with less than 50\% in their row are the ones that are theoretically not liked by users. Perl, at 29.4\% ranks lowest in the Stack Overflow survey's likability section from the languages we chose for comparison.\\
 
 \begin{table}[htbp]
 \caption{Popular Programming Languages on Stack Overflow}
@@ -279,12 +279,12 @@ Perl&29.4\%\\
 
 \subsection{Data Gathering}
 \subsubsection{Collection}
-We collected data using the Stack Exchange API \cite{b28} using carefully constructed SQL queries to randomize the order of the data for specific languages, and then picking every N\textsuperscript{th} entry from the randomized data. The challenges we faced were the 50,000 result limitation for queries and the processing time limit for these queries.\\
+We collected data using the Stack Exchange API \cite{b28} using carefully constructed SQL queries to randomize the order of the data for specific languages, and then picked every N\textsuperscript{th} entry from the randomized data to ensure statistical validity. The challenges we faced were the 50,000 result limitation for queries and the processing time limit for these queries.\\
 
 One unintended effect of our data collection method is that the data is representative of the temporal distribution overall. This means we ended up with more entries from recent years and fewer entries from older years because there is much more activity on Stack Overflow now compared to even five to ten years ago. This is something to consider because our analysis becomes more reliable as date range increases (because the amount of questions and answers increases with recency). Additionally, some languages have fewer posts (because they are new like Rust) so we were able to collect all their data with our query.\\
 
 \subsubsection{Queries used}
-We used Queries for answers, questions, and count. Since some of the languages have a lot of questions and answers, we needed to count an pick every N\textsuperscript{th} entry from the randomized list. The N-value is calculated as follows:
+We used separate Queries to obtain answers, questions, and count. Since some of the languages have a lot of questions and answers, we needed to count an pick every N\textsuperscript{th} entry from the randomized list. The N-value is calculated as follows:
 \begin{equation}
     N = num\_rows_{lang, type} / 50,000
 \end{equation}
@@ -318,7 +318,7 @@ JavaScript&42&68\\
 \end{center}
 \end{table}
 
-Here is a sample query used to calculate $num\_rows_{python, answers}$
+Here is a sample query used to calculate $num\_rows_{python, answers}$\\
 
 \begin{lstlisting}[language=SQL]
 SELECT
@@ -395,7 +395,7 @@ Id&Unique identifier for post/comment\\
 \end{table}
 
 \subsection{Preprocessing/Cleaning}
-The question and answer data from stack overflow consists of a lot of extra fluff that needs to be removed before Sentiment Analysis can be applied to it. We applied the following steps to clean the data.
+The question and answer data from Stack Overflow consists of irrelevant data that needs to be removed before Sentiment Analysis can be applied to it. We applied the following steps to clean the data.
 
 \begin{enumerate}
     \item Remove Code blocks
@@ -448,7 +448,7 @@ For analysis of these sentiments overall, we used the probabilities over the sam
 \section{Results And Discussion}
 Like other research in this area, there is a bit of qualitative analysis involved in our paper, but we aimed for mostly empirical analysis. We will phrase the topics as research questions and try to analyse the different trends we saw. Overall, the data ended up being more neutral than expected, so that precludes us from making definitive conclusions with a few exceptions. \\
 
-Previous research has also shown that the different Sentiment Analysis tools often do not agree [e]completely with each other, and even humans do not agree with each other [e] (completely) a lot. This means that we have to limit ourselves to more coarse-grained analysis rather than fine-grained analysis\cite{b26, b35, b36}. \\
+Previous research has also shown that the different Sentiment Analysis tools often do not agree completely with each other, and even humans do not agree with each other completely. This means that we have to limit ourselves to more coarse-grained analysis rather than fine-grained analysis\cite{b26, b35, b36}. \\
 
 \subsection{RQ1: How do questions compare to answers?}
 
@@ -482,20 +482,20 @@ The majority of questions (55\% - 62\%) also have neutral sentiments, but the pe
 
 Overall, answers seem to have a much more neutral tone with very few answers with negative sentiments. On the other hand, questions seem to have a bit less neutral tone, and quite a bit more negative sentiments. These conclusions also seem to be in line with the research done by Lin and Larsen on Data from 2017 only \cite{b11}.\\
 
+To speculate why the data acquired shows overwhelmingly neutral sentiment, we offer that it could be due to the nature of questions and answers on Stack Overflow tending to be succinct. The most efficient questions will focus strictly on the problem at hand, and the most efficient answers are clear and concise. Therefore, posts may tend to contain minimal wording, and thus minimal emotionally charged phrases. But regardless of the cause of this neutral data, it indicates that sentimental analysis may be more meaningful in forums where users write longer passages or express ideas in more detail such as in the English, Code Review, or Movies and Television Stack Exchanges.\\
+
 Out of all the languages examined, C++ had the highest negative sentiment in questions with 30.36\% of questions expressing negative sentiments. It is followed closely by Rust with 29.90\% and C with 28.88\%. It is worth noting that these are similar languages. C++ is a superset of C, and Rust is syntactically similar to C++ as well\cite{b37}. As for relative positive sentiment, JavaScript showed the most positive sentiment at in its questions with 16.68\% positivity.\\
 
 For answers, Rust showed the most negative sentiment with 5.72\% followed by C++ at 4.36\%. Ruby has the most relative positive sentiment in it's answers, with 11.42\% positivity.\\
 
 An interesting observation is that JavaScript questions had the lowest discrepancy between its percentage of positive and negative questions (24.09\% negative and 16.68\% positive) and the highest discrepancy between positive and negative answers (10.64\% positive and 2.65\% negative) with positivity trending higher. So JavaScript does seem to be the most positive overall for the whole time period cumulative.\\
 
-JavaScript users ask questions less negatively compared to other languages, and there is a greater proportion of answers that are positive in sentiment. This result was somewhat expected, as JavaScript was the most popular language ranked in the 2020 Stack Overflow Developers Survey\cite{b29}. To speculate why this occurs, it could be due to the leniency of the language and the abundance of external libraries, allowing for easier problem solving and therefore less frustration and negative sentiment. \\
-
-To speculate why the data acquired shows overwhelmingly neutral sentiment, we offer that it could be due to the nature of questions and answers on Stack Overflow tending to be succinct. The most efficient questions will focus strictly on the problem at hand, and the most efficient answers are clear and concise. Therefore, posts may tend to contain minimal wording, and thus minimal emotionally charged phrases. But regardless of the cause of this neutral data, it indicates that sentimental analysis may be more meaningful in forums where users write longer passages or express ideas in more detail such as in the English, Code Review, or Movies and TV Stack Exchanges.\\
+As evidenced, JavaScript users ask questions less negatively compared to other languages, and there is a greater proportion of answers that are positive in sentiment. This result was somewhat expected, as JavaScript was the most popular language ranked in the 2020 Stack Overflow Developers Survey\cite{b29}. To speculate why this occurs, it could be due to the leniency of the language's syntax and the abundance of external libraries, allowing for easier problem solving and therefore less frustration and negative sentiment. \\
 
 As to why questions are more emotionally charged than answers, we offer that this is due to the nature of questions in that users may be frustrated about a problem and being unable to find a solution, and that frustration results in expressing negativity about the language or problem. Questions may also tend to be more positively sentimental than answers because users may post questions about a language they favour in hope of attracting positive discussion. Conversely, answers may be less emotionally charged because they tend to be direct, and the users posting answers may be experts who do not struggle with the user’s problems. Answering users may also be happy to share their knowledge about the language, resulting in relatively more positive sentiment than negative.\\
 
 \subsection{RQ2: Trends over time}
-Fig. 7 and Fig. 8 show the sentiment score for each language plotted over time for answers and questions respectively, where 0 represents entirely neutral sentimental data, -1 would represent entirely negative sentimental data, and +1 would represent entirely positive sentimental data. It is worth noting that Rust is a newer language than the rest, and thus its data starts in 2012 and drops sharply in Fig. 8 as more posts are made. \\
+Fig. 7 and Fig. 8 show the $y_{em}$ values for each language plotted over time for answers and questions respectively, where 0 represents entirely neutral sentimental data, -1 would represent entirely negative sentimental data, and +1 would represent entirely positive sentimental data. It is worth noting that Rust is a newer language than the rest, and thus its data starts in 2012 and drops sharply in Fig. 8 as more posts are made. \\
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=0.49\textwidth]{figures/time_questions_em.png}}
@@ -540,7 +540,7 @@ Similar to Fig. 9, Fig. 10 shows the sentiment score of questions and answers to
 
 Combined posts for the lower-level languages are more negatively sentimental, and they decline slightly more sharply over time when compared to the other, higher-level languages. It is also interesting to note that in the most recent data for questions (2020), combined posts for the lower-level languages are on an incline, whereas combined posts for the higher-level languages are on the decline. There is also a larger gap in the sentiment score of lower-level languages versus higher-level ones, compared to compiled versus interpreted languages.\\
 
-We found it more difficult to speculate why posts regarding the lower level and compiled languages carry more negative sentiment than higher-level and interpreted languages, with this gap increasing over time. One reason could be that older compiled languages themselves such as C and C++ do not update or change as frequently as interpreted languages such as Python. Another question is whether compiled languages are becoming less useful for increasingly common modern applications that favour interpreted languages. If compiled languages are less suited to tackling popular modern problems, this may cause frustration and negative sentiment. Both these reasons can't explain the amount of negativity seen in questions and answers for Rust, which is newer and built to solve challenging problems like safe concurrency that most other languages ignore\cite{b40}.
+We found it more difficult to speculate why posts regarding the lower level and compiled languages carry more negative sentiment than higher-level and interpreted languages, with this gap increasing over time. One reason could be that older compiled languages themselves such as C and C++ do not update or change as frequently as interpreted languages such as Python. Another question is whether compiled languages are becoming less useful for increasingly common modern applications that favour interpreted languages. If compiled languages are less suited to tackling popular modern problems, this may cause frustration and negative sentiment. Both these reasons can not explain the amount of negativity seen in questions and answers for Rust, which is newer and built to solve challenging problems like safe concurrency that most other languages ignore\cite{b40}.
 
 
 \subsection{RQ5: Python vs Java}
@@ -569,19 +569,19 @@ This data shows a strong uptick in negatively sentimental questions from [2008, 
 As for the relative negative sentiment of answers, the data stays stable over time for both languages. The data also shows that across all time and types of posts, Java has more sentiment attached, excluding positively sentimental questions, wherein Python overtakes Java in most recent data. The gap between Java and Python for the amount of sentiment attached in posts increases slightly over time in each category.\\
 
 \subsection{*Rust is anomalous}
-Rust has interesting data, it  stands out as the most negatively scored language for both answers and questions across time in Fig. 7 and 8 respectively. But it is also by far the most loved language among developers in the Stack Overflow survey. \\
+It is worth noting that Rust has interesting data. It stands out as the most negatively scored language for both answers and questions across time in Fig. 7 and 8 respectively. But it is also by far the most loved language among developers in the Stack Overflow survey. \\
 
-Throughout the data shown in Fig. 3 through Fig. 8., the data for Rust is the most varied from the norm. Fig. 5 shows that the language had by far the largest difference between the percentage of positive and negative answers, while Fig. 6 shows that it had by far the most similar percentage of positive and negative questions. With this data, it is worth noting that Rust is a relatively new and lower-level language, and fewer data could be collected for Rust compared to other languages, as only about 22,000 questions and answers existed on stack overflow, which is less than the 50,000 sampled for all other languages.\\
+Throughout the data shown in Fig. 3 through Fig. 8., the data for Rust is the most varied from the norm. Fig. 5 shows that the language had by far the largest difference between the percentage of positive and negative answers, while Fig. 6 shows that it had by far the most similar percentage of positive and negative questions. With this data, it is worth noting that Rust is a relatively new and lower-level language, and fewer data could be collected for Rust compared to other languages, as only about 22,000 questions and answers existed on Stack Overflow, which is less than the 50,000 sampled for all other languages.\\
 
 \section{Threats to validity}
 
 \subsection{Data Collection/Limited Resources}
 We did our best to verify our results, but random sampling still leaves room for improvement. Ideally, we would have liked to sample data repeatedly and get a more robust data set that we can draw conclusions from, but we had time constraints and the Sentiment Analysis step proved to be very time consuming.\\
 
-In addition, there could have been some differences in how we cleaned the [e]Data and how the Senti4SD authors did\cite{b18}. Another possible source for errors is the splitting, sentiment appending, and merging process, which is non-trivial and might contain some issues that went unnoticed in our work.\\
+In addition, there could have been some differences in how we cleaned the data and how the Senti4SD authors did\cite{b18}. Another possible source for errors is the splitting, sentiment appending, and merging process, which is non-trivial and might contain some issues that went unnoticed in our work.\\
 
 \subsection{Choice of Sentiment Analyzer}
-While Senti4SD does perform very well for Stack Overflow Data, it's accuracy is still not as high as to allow more detailed analysis. Further, as mentioned before, different classifiers often don't agree with each other or other humans. This seems to be one of the biggest threat to validity, one that would require a more extensive study using a few different well performing Sentiment Analyzers like SentiStrengthSE or BERT. \\
+While Senti4SD does perform very well for Stack Overflow Data, it's accuracy is still not as high as to allow more detailed analysis. Further, as mentioned before, different classifiers often do not agree with each other or other humans. This seems to be one of the biggest threat to validity, one that would require a more extensive study using a few different well performing Sentiment Analyzers like SentiStrengthSE or BERT. \\
 
 \subsection{Dataset}
 Our conclusions and observations are fairly dependent on the 8 languages we chose for our project. Additionally, Stack Overflow questions and answers include lots of non-text elements (which need to be removed before Sentiment Analysis can be applied). Reading through some of the cleaned data, it is clear that cleaning the data can also remove some context from it, which puts the sentiment analyzers at a disadvantage. Stack Overflow data is hard to accurately analyze due to this.\\ 
