@@ -86,7 +86,7 @@ Stack Overflow is widely used by software developers all around the world and is
 \end{abstract}
 
 \begin{IEEEkeywords}
-Sentiment Analysis, Stack Overflow, Empirical Software Engineering, Natural Language Processing, Visualization, Qualitative Analysis, Application
+Sentiment Analysis, Stack Overflow, Empirical Software Engineering, Natural Language Processing, Visualization, Application
 \end{IEEEkeywords}
 
 \section{Introduction}
@@ -97,18 +97,17 @@ Stack Overflow is used by most developers, for work and/or for personal projects
 \subsection{Motivation}
 Emotional awareness plays a critical role in collaborative work. Software development is highly collaborative and depends on a lot of collaborations tools like email, forums, code repositories, and issue tracking tools\cite{b1}. Previous research shows that emotion in the workplace affects collaboration and productivity of employees\cite{b2}. \\
 
-Discussions on StackOverflow aren't neutral. Previous research suggests that a sizable amount of texts are positive or negative\cite{b3, b4, b5}. There is also evidence that Stack Overflow can be perceived as a hostile environment, particularly for newcomers\cite{b6}. We went through data over the years and to find how developers' emotions towards different languages has changed over the years to answer the following questions:
- \subsubsection{Trends}Are there any interesting trends about developers' changing emotions towards languages?
- \subsubsection{Comparisons}How do newer languages compare to the established ones and obsolete ones?
- \subsubsection{Compiled vs Interpreted}How do emotions towards compiled languages differ from emotions towards interpreted languages over time?
- \subsubsection{Lower-level vs Higher-level} How do emotions towards lower-level languages differ from higher-level languages over time?
+Discussions on StackOverflow aren't neutral. Previous research suggests that a sizable amount of texts are positive or negative\cite{b3, b4, b5}. There is also evidence that Stack Overflow can be perceived as a hostile environment, particularly for newcomers\cite{b6}. We went through data over the years and to find how developers' emotions towards different languages has changed over the years to answer the following questions:\\
  \subsubsection{Type}How do questions compare to answers?
+ \subsubsection{Trends}Are there any interesting trends about developers' changing emotions towards languages?
+ \subsubsection{Compiled vs Interpreted}How do emotions towards compiled languages differ from emotions towards interpreted languages over time?
+ \subsubsection{Lower-level vs Higher-level} How do emotions towards lower-level languages differ from higher-level languages over time?\\
  
 
 So we aim to use Natural Language Processing (NLP) techniques and the data we have gathered to answer these questions.
 
 \subsection{Our Contribution}
-We researched NLP tools and techniques that would help us with this problem. We collected data for multiple languages from Stack Overflow and applied Sentimental analysis techniques along with temporal analysis to pose interesting questions about developers' emotions towards different languages over time and how these might be connected to other attributes of the language like age, complexity and run-time nature.\\
+We researched NLP tools and techniques that would help us with this problem. We collected data for multiple languages from Stack Overflow and applied Sentimental analysis techniques along with temporal and empirical analysis to ponder interesting questions about developers' emotions towards different languages over time and how these might be connected to other attributes of the language like age, complexity and run-time nature.\\
 
 \section{Background}
 
@@ -129,7 +128,7 @@ Some of the newer sentiment analyzers combine the lexical-based methods and mach
 An in-depth study on 24 published sentiment analyzers found that different analysers have different performance depending on the dataset used.\cite{b13} It also shows that these analyzers may not agree with each other. This means very different results based on the analyzer used, which in turn means that it is important to choose to right analyzer for the domain and application. This is also the biggest threat to validity for our study.\\
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=0.49\textwidth]{how-does-sentiment-analysis-work.png}}
+\centerline{\includegraphics[width=0.49\textwidth]{figures/how-does-sentiment-analysis-work.png}}
 \caption{An illustration of how ML-based Supervised Sentiment Analyzers work\cite{b32}}
 \label{fig}
 \end{figure}
@@ -175,13 +174,16 @@ Bidirectional Encoder Representations from Transformers (BERT) is a relatively n
 
 \begin{figure*}[tbp]
 \centering
-\includegraphics[width=\textwidth]{4710_method_summary.png}
+\includegraphics[width=\textwidth]{figures/4710_method_summary.png}
 \caption{Overview of how we approached the problem}
 \label{fig}
 \end{figure*}
 
 \subsection{Emotions in Software Engineering and Stack Overflow}
-While there has been plenty of research into performing Sentiment Analysis on SE-related data, there is not much research into the results obtained from these Sentiment Analysis techniques. Novielli et al\cite{b33} used information from Stack Overflow data to argue that the emotional style of a technical question affects the probability of said question getting an appropriate answer.  Ling and Larsen\cite{b11} have also applied the Senti4SD model to Stack Overflow Data for some popular languages, however, in that paper, they used only data from 2017 and did not consider any changes in the sentiments over a more extensive time period. From our research, most of the work done using stack overflow data has been more qualitative that quantitative. For example, Novielle et al \cite{b34} presented a qualitative overview of the different types of positive and negative emotions in questions and answers. But to the best of our knowledge no one has used Sentiment Analysis on Stack Overflow data to find interesting changes and trends over time. Software development is always in a state of flux, so we believe there are some interesting patterns than can be uncovered by our type of analysis.\\
+While there has been plenty of research into performing Sentiment Analysis on SE-related data, there is not much research into the results obtained from these Sentiment Analysis techniques. The importance of this work cannot be overstated. Graziotin et al \cite{b38} noted that low productivity and low quality are the most likely outcomes that could occur when developers are unhappy. Since working with technologies that they feel negatively about could made developers unhappy, it is necessary for researchers and industry to understand developers emotions about different languages and tools. As a first step towards evaluating the feasibility of a tool for automatic emotion mining, Murgia et al. \cite{39} performed an exploratory study
+of developer emotions in almost 800 Github issue comments. He argued that if humans cannot detect emotions in software artifacts then neither can automated tools. He found that human reviewers and by extension automated tools tend to agree more on a lack of emotions than on presence of emotion. From this study, it would seem that emotion mining tools are apt to detecting a lack of emotion rather than it's presence. Novielli et al\cite{b33} used information from Stack Overflow data to argue that the emotional style of a technical question affects the probability of said question getting an appropriate answer.  Ling and Larsen\cite{b11} have also applied the Senti4SD model to Stack Overflow Data for some popular languages, however, in that paper, they used only data from 2017 and did not consider any changes in the sentiments over a more extensive time period. \\
+
+From our research, most of the work done using stack overflow data has been more qualitative that quantitative. For example, Novielle et al \cite{b34} presented a qualitative overview of the different types of positive and negative emotions in questions and answers. But to the best of our knowledge no one has used Sentiment Analysis on Stack Overflow data to find interesting changes and trends over time. Software development is always in a state of flux, so we believe there are some interesting patterns than can be uncovered by our type of analysis.\\
 
 \section{Our Method}
  
@@ -440,9 +442,9 @@ For analysis of these sentiments overall, we used the probabilities over the sam
     \hat{p}(c) = \frac{num_c}{num_{total}}
 \end{equation}
 
-\vspace{6pt}
+\vspace{8pt}
 \section{Results/Visualization}
-Like other research in this area (Empirical Software Engineering using Data Science methods), there is a lot of qualitative analysis involved in our paper. So we will phrase them as research questions and try to analyse the different trends we saw. Overall, the data ended up being more neutral than expected, so that precludes us from making definitive conclusions with a few exceptions. \\
+Like other research in this area, there is a bit of qualitative analysis involved in our paper, but we aimed for mostly empirical analysis. We will phrase the topics as research questions and try to analyse the different trends we saw. Overall, the data ended up being more neutral than expected, so that precludes us from making definitive conclusions with a few exceptions. \\
 
 Previous research has also shown that the different Sentiment Analysis tools often don't agree a lot with each other, and even humans do not agree with each other a lot. This means that we have to limit ourselves to more coarse-grained analysis rather than fine-grained analysis\cite{b26, b35, b36}. \\
 
@@ -482,26 +484,34 @@ Out of all the languages examined, C++ had the highest negative sentiment in que
 
 For answers, Rust showed the most negative sentiment with 5.72\% followed by C++ at 4.36\%. Ruby has the most relative positive sentiment in it's answers, with 11.42\% positivity.\\
 
-An interesting observation is that JavaScript questions had the lowest discrepancy between its percentage of positive and negative questions (24.09\% negative and 16.68\% positive) and the highest discrepancy between positive and negative answers (10.64\% positive and 2.65\% negative) with positivity trending higher. So JavaScript does seem to be the most positive overall for the whole time period cumulative.
+An interesting observation is that JavaScript questions had the lowest discrepancy between its percentage of positive and negative questions (24.09\% negative and 16.68\% positive) and the highest discrepancy between positive and negative answers (10.64\% positive and 2.65\% negative) with positivity trending higher. So JavaScript does seem to be the most positive overall for the whole time period cumulative.\\
+
+JavaScript users ask questions less negatively compared to other languages, and there is a greater proportion of answers that are positive in sentiment. This result was somewhat expected, as JavaScript was the most popular language ranked in the 2020 Stack Overflow Developers Survey\cite{b29}. To speculate why this occurs, it could be due to the leniency of the language and the abundance of external libraries, allowing for easier problem solving and therefore less frustration and negative sentiment. \\
+
+To speculate why the data acquired shows overwhelmingly neutral sentiment, we offer that it could due to the nature of questions and answers on stack overflow tending to be succinct. The most efficient questions will focus strictly on the problem at hand, and the most efficient answers are clear and concise. Therefore, posts may tend to contain minimal wording, and thus minimal emotionally charged phrases. But regardless of the cause of this neutral data, it indicates that sentimental analysis may be more meaningful in forums where users write longer passages or express ideas in more detail such as in the English, Code Review, or Movies and TV stack exchanges.\\
+
+As to why questions are more emotionally charged than answers, we offer that this is due to the nature of questions in that users may be frustrated about a problem and being unable to find a solution, and that frustration results in expressing negativity about the language or problem. Questions may also tend to be more positively sentimental than answers because users may post questions about a language they favour in hope of attracting positive discussion. Conversely, answers may be less emotionally charged because they tend to be direct, and the users posting answers may be experts who do not struggle with the user’s problems. Answering users may also be happy to share their knowledge about the language, resulting in relatively more positive sentiment than negative.\\
 
 \subsection{RQ2: Trends over time}
 Fig. 7 and Fig. 8 show the sentiment score for each language plotted over time for answers and questions respectively, where 0 represents entirely neutral sentimental data, -1 would represent entirely negative sentimental data, and +1 would represent entirely positive sentimental data. It is worth noting that Rust is a newer language than the rest, and thus its data starts in 2012 and drops sharply in Fig. 8 as more posts are made. \\
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=0.49\textwidth]{figures/time_questions_em.png}}
-\caption{Question Sentiments over time.}
+\caption{Question Sentiments over time (see appendix for bigger version)}
 \label{fig}
 \end{figure}
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=0.49\textwidth]{figures/time_answers_em.png}}
-\caption{Answer Sentiments over time.}
+\caption{Answer Sentiments over time (see appendix for bigger version)}
 \label{fig}
 \end{figure}
 
 As seen in fig. 7, the sentiment of questions over time varies more wildly across different languages (varying from about -0.25 to 0.075), compared to the sentiment of answers as seen in fig. 8 (varying from about 0 to 0.13). An interesting trend that we noticed is that the questions seem to get more negative over time. While this could be attributed to merely having less data from those years, that doesn't seem to be the case.\\
 
 We verified this by applying sentiment analysis to more older data, in specific for Python and Java (refer to RQ5 below). The findings seem to support the trend that questions have gotten more negative over time, especially when compared to a decade ago. We cannot make any such observations about the answers though, partly because they display less positive or negative sentiment, and also because the have been within a limited range over time.\\
+
+We offer this could be explained by Stack Overflow users perhaps becoming increasingly more comfortable expressing negativity online, resulting in an increase of negative sentiment. This may also be explained for the reasons there is a sharper decrease in the sentiment of compiled languages, as described below under RQ3.\\
 
 
 \subsection{RQ3: Interpreted vs Compiled}
@@ -515,13 +525,13 @@ Overall $y_{em}$ scores for all the interpreted (Python, JavaScript, Perl) and a
 
 Here, it is more clearly indicated that compiled languages have a stronger negative trend in overall posts across time, whereas the sentiment of interpreted languages is more stable over time. Fig. 9 further demonstrates how compiled languages are more negatively sentimental (and less positively sentimental) than interpreted languages throughout time for all posts, with the gap growing larger across time after 2009. \\
 
-From Fig. 7 and 8 above, we can see that the popular interpreted languages have consistently more positive sentiment in their discussion compared to the popular compiled ones. But on a closer inspection of the languages we considered, there may be an underlying reason that has a stronger effect on these values (see RQ4). \\
+Overall, as seen in Fig. 7 through Fig. 9, posts for all languages trend slightly downward over time, indicating a slight decrease in positively sentimental posts, and a slight increase in negatively sentimental posts over time. And while we can see that the popular interpreted languages have consistently more positive sentiment in their discussion compared to the popular compiled ones, on closer inspection of the languages we considered, there may be another underlying reason that has a stronger effect on these values (see RQ4). \\
 
 \subsection{RQ4: Lower-level vs Higher-level languages}
 something here
 
 \subsection{RQ5: Python vs Java}
-Discussion for this goes here
+To gain a stronger analysis, we applied Sentiment Analysis to additional data for Java and Python questions and answers across three time periods, with the results shown in Fig. 10 and 11, and summarized together in Fig. 12. Here, the Y-axis indicates the relative percentage of data for each collection plotted. The three time periods we considered were [2008, 2012], (2012, 2016], and (2016, 2020]. We collected 50,000 questions and answers for Python and Java for each time period. 
 
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=0.49\textwidth]{figures/Java-python-answers.png}}
@@ -535,19 +545,31 @@ Discussion for this goes here
 \label{fig}
 \end{figure}
 
+This data shows a strong uptick in negatively sentimental questions from [2008, 2012] to (2012, 2016] that negligibly decreases (<1\% for both languages) from (2012, 2016] to  (2016, 2020]. This supports the notion that there has been an increase in negatively sentimental questions, and that the trend seen in RQ2 is not just a fluke due to lesser data collected for earlier years.\\
+
 \begin{figure}[htbp]
 \centerline{\includegraphics[width=0.49\textwidth]{figures/Java-python-combined.png}}
 \caption{Python vs Java questions/answers over the 3 time periods}
 \label{fig}
 \end{figure}
 
-\subsection{Rust is anomalous}
-Talking points go here
+As for the relative negative sentiment of answers, the data stays stable over time for both languages. The data also shows that across all time and types of posts, Java has more sentiment attached, excluding positively sentimental questions, wherein Python overtakes Java in most recent data. The gap between Java and Python for the amount of sentiment attached in posts increases slightly over time in each category.\\
 
+\subsection{*Rust is anomalous}
+Rust has been a weird mystery. It  stands out as the most negatively scored language for both answers and questions across time in Fig. 7 and 8 respectively. But it is also by far the most loved language among developers in the Stack Overflow survey. \\
 
+Throughout the data shown in Fig. 3 through Fig. 8., the data for Rust is the most varied from the norm. Fig. 5 shows that the language had by far the largest difference between the percentage of positive and negative answers, while Fig. 6 shows that it had by far the most similar percentage of positive and negative questions. With this data, it is worth noting that Rust is a relatively new and lower-level language, and fewer data could be collected for Rust compared to other languages, as only about 22,000 questions and answers existed on stack overflow, which is less than the 50,000 sampled for all other languages.\\
 
 \section{Threats to validity}
+
+\subsection{Data Collection}
 Stuff that might have introduced errors or how different approach might lead to different conclusions
+
+\subsection{Choice of Sentiment Analyzer}
+Stuff goes here
+
+\subsection{Limited Resources/Time}
+more stuff
 
 \section{Conclusion/Future Work}
 Summary of results and contributions, and ideas for improvements and future work.\\
@@ -627,6 +649,10 @@ Summary of results and contributions, and ideas for improvements and future work
 
 \bibitem{b37} I. Balbaert, Rust essentials: discover how to use Rust to write fast, secure, and concurrent systems and applications, 2nd ed. Packt Publishing, 2018. 
 
+\bibitem{b38} Graziotin, Fagerholm. “What Happens When Software Developers Are (un)happy.” The Journal of Systems and Software, vol. 140, Elsevier BV, June 2018, pp. 32–47, doi:10.1016/j.jss.2018.02.041.
+
+\bibitem{b39} Murgia, Tourani. “Do Developers Feel Emotions? an Exploratory Analysis of Emotions in Software Artifacts.” Proceedings of the 11th Working Conference on Mining Software Repositories, ACM, 2014, pp. 262–71, doi:10.1145/2597073.2597086.
+
 \end{thebibliography}
 
 \vspace{12pt}
@@ -650,7 +676,7 @@ NOTE: Sections 3 onwards are still Work in Progress.
 
 \appendices
 \section{First Appendix}
-Here are bigger versions of the figures above
+Here are bigger versions of some figures from above (figures might show on next page due to spacing).
 
 
 
